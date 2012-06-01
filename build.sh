@@ -51,21 +51,25 @@ then
   chmod a+x ~/bin/repo
 fi
 
-if [ ! -d $REPO_BRANCH ]
-then
-  mkdir $REPO_BRANCH
-  if [ ! -z "$BOOTSTRAP" -a -d "$BOOTSTRAP" ]
-  then
-    echo Bootstrapping repo with: $BOOTSTRAP
-    cp -R $BOOTSTRAP/.repo $REPO_BRANCH
-  fi
-  cd $REPO_BRANCH
-  repo init -u git://github.com/rodries/platform_manifest.git -b $REPO_BRANCH
-else
-  cd $REPO_BRANCH
-  # temp hack for turl
-  repo init -u https://github.com/rodries/platform_manifest -b $REPO_BRANCH
-fi
+#if [ ! -d $REPO_BRANCH ]
+#then
+#  mkdir $REPO_BRANCH
+#  if [ ! -z "$BOOTSTRAP" -a -d "$BOOTSTRAP" ]
+#  then
+#    echo Bootstrapping repo with: $BOOTSTRAP
+#    cp -R $BOOTSTRAP/.repo $REPO_BRANCH
+#  fi
+#  cd $REPO_BRANCH
+#  repo init -u git://github.com/rodries/platform_manifest.git -b $REPO_BRANCH
+#else
+#  cd $REPO_BRANCH
+#  # temp hack for turl
+#  repo init -u https://github.com/rodries/platform_manifest -b $REPO_BRANCH
+#fi
+
+mkdir rodries
+cd rodries
+repo init -u git://github.com/rodries/platform_manifest.git -b $REPO_BRANCH
 
 #cp $WORKSPACE/hudson/$REPO_BRANCH.xml .repo/local_manifest.xml
 
@@ -77,14 +81,14 @@ repo sync -d
 check_result repo sync failed.
 echo Sync complete.
 
-cd vendor/Gummy
-./get-prebuilts
-cd ../../
+#cd vendor/Gummy
+#./get-prebuilts
+#cd ../../
 
-if [ -f $WORKSPACE/hudson/$REPO_BRANCH-setup.sh ]
-then
-  $WORKSPACE/hudson/$REPO_BRANCH-setup.sh
-fi
+#if [ -f $WORKSPACE/hudson/$REPO_BRANCH-setup.sh ]
+#then
+#  $WORKSPACE/hudson/$REPO_BRANCH-setup.sh
+#fi
 
 . build/envsetup.sh
 lunch $LUNCH
@@ -99,7 +103,7 @@ else
   make $CLEAN_TYPE
 fi
 
-mka gummy 2>&1 | tee "$LUNCH".log
+mka bacon 2>&1 | tee "$LUNCH".log
 
 ZIP=$(tail -2 "$LUNCH".log | cut -f3 -d ' ' | cut -f1 -d ' ' | sed -e '/^$/ d')
 rm -rf $WORKSPACE2/archive
