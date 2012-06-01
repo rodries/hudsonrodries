@@ -5,12 +5,12 @@ cd ../android
 export WORKSPACE=$PWD
 echo $ANDROID_JAVA_HOME
 
-if [ ! -d hudsonGummy ]
+if [ ! -d hudsonrodries ]
 then
-  git clone git://github.com/teamgummy/hudsonGummy.git
+  git clone git://github.com/rodries/hudsonGummy.git
 fi
 
-cd hudsonGummy
+cd hudsonrodries
 git pull
 
 exec ./build.sh

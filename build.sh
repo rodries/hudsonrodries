@@ -60,11 +60,11 @@ then
     cp -R $BOOTSTRAP/.repo $REPO_BRANCH
   fi
   cd $REPO_BRANCH
-  repo init -u https://github.com/teamgummy/platform_manifest.git -b $REPO_BRANCH
+  repo init -u git://github.com/rodries/platform_manifest.git -b $REPO_BRANCH
 else
   cd $REPO_BRANCH
   # temp hack for turl
-  repo init -u https://github.com/teamgummy/platform_manifest -b $REPO_BRANCH
+  repo init -u https://github.com/rodries/platform_manifest -b $REPO_BRANCH
 fi
 
 #cp $WORKSPACE/hudson/$REPO_BRANCH.xml .repo/local_manifest.xml
