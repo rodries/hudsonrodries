@@ -67,15 +67,9 @@ fi
 #  repo init -u https://github.com/rodries/platform_manifest -b $REPO_BRANCH
 #fi
 
-rm -rf rodries
-if [ ! -d rodries ]
-then
-  mkdir rodries
-  cd rodries
-  repo init -u git://github.com/rodries/platform_manifest.git -b $REPO_BRANCH
-else
-  cd rodries
-fi
+#rm -rf rodries
+cd rodries
+repo init -u git://github.com/rodries/platform_manifest.git -b $REPO_BRANCH
 
 #cp $WORKSPACE/hudson/$REPO_BRANCH.xml .repo/local_manifest.xml
 
