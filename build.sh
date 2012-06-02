@@ -67,6 +67,7 @@ fi
 #  repo init -u https://github.com/rodries/platform_manifest -b $REPO_BRANCH
 #fi
 
+rm -rf rodries
 if [ ! -d rodries ]
 then
   mkdir rodries
